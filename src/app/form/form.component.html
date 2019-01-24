@@ -1,0 +1,14 @@
+<form>
+  <div *ngFor="let input of data.inputs">
+    <div [class]="input.cssWrapper">
+      <label>{{input.label}}</label>
+      <input [name]="input.name" [class]="input.cssClass" [id]="input.id" [type]="input.type" />
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" [class]="data.submit.cssClass" (click)="data.submit.submitFunction()">{{data.submit.valor}}</button>
+  </div>
+  <div *ngIf="data.resetForm">
+    <button type="reset">limpar</button>
+  </div>
+</form>
