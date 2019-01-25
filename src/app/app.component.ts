@@ -20,24 +20,20 @@ export class AppComponent implements OnInit {
   public pessoa = new Pessoa();
 
   ngOnInit(): void {
-    this.modelForm.submit = {
-      valor: "salvar",
-      cssClass: 'btn btn-default',
-      submitFunction: () => console.log(this.pessoa)
-    };
+    this.modelForm.submit = { valor: "salvar", cssClass: 'btn btn-default', submitFunction: () => console.log(this.pessoa) };
     this.modelForm.model = this.pessoa;
   }
 
   addInput() {
     this.funcoes.forEach(f => {
-      const func = new Function('return ' + f.funcao.trim())
-      this.input.eventos.push({
-        nome: f.tipo,
-        funcao: func()
-      })
-    })
+      const func = new Function(`return ${f.funcao.trim()}`).bind(this);
+      this.input.eventos.push({ nome: f.tipo, funcao: func() });
+    });
+
+
     this.modelForm.inputs.push({ ...this.input });
     this.input = new Input();
+    this.funcoes = [];
     this.form.ngAfterViewInit();
 
   }
