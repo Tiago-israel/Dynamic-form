@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { modelForm } from './form/models/model-form';
 import { Input } from './form/models/input';
 import { FormComponent } from './form/form.component';
+import { Pessoa } from './models/pessoa';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +17,15 @@ export class AppComponent implements OnInit {
   public input: Input = new Input();
   public funcoes: Funcao[] = [];
 
+  public pessoa = new Pessoa();
+
   ngOnInit(): void {
     this.modelForm.submit = {
       valor: "salvar",
       cssClass: 'btn btn-default',
-      submitFunction: () => {
-        alert("form submitted!!!")
-      }
+      submitFunction: () => console.log(this.pessoa)
     };
+    this.modelForm.model = this.pessoa;
   }
 
   addInput() {
@@ -34,7 +36,6 @@ export class AppComponent implements OnInit {
         funcao: func()
       })
     })
-    debugger
     this.modelForm.inputs.push({ ...this.input });
     this.input = new Input();
     this.form.ngAfterViewInit();

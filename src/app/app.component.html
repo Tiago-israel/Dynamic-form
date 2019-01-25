@@ -25,18 +25,18 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-3">
-                    <label>css wrapper</label>
+                    <label>wrapper class</label>
                     <input type="text" name="cssWrapper" [(ngModel)]="input.cssWrapper" class="form-control" />
                 </div>
                 <div class="form-group col-md-3">
                     <label>input class</label>
                     <input type="text" name="cssClass" [(ngModel)]="input.cssClass" class="form-control" />
                 </div>
-                <button (click)="addFuncao()">add função</button>
+                <button (click)="addFuncao()">add function</button>
             </div>
             <div *ngFor="let funcao of funcoes" class="row">
                 <div class="form-group col-md-6">
-                    <label>Tipo</label>
+                    <label>Type</label>
                     <select [(ngModel)]="funcao.tipo" class="form-control">
                         <option value="change">Change</option>
                         <option value="keyup">KeyUp</option>
@@ -44,13 +44,13 @@
                     </select>
                 </div>
                 <div class="form-group  col-md-6">
-                    <label>Função</label>
+                    <label>Function</label>
                     <textarea [(ngModel)]="funcao.funcao" class="form-control" rows="4" cols="50">
                     </textarea>
                 </div>
             </div>
             <div class="row">
-                <button (click)="addInput()">Adicionar</button>
+                <button (click)="addInput()">Add</button>
             </div>
         </div>
     </div>

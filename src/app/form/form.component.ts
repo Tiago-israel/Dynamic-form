@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, AfterContentInit, AfterViewInit, OnChanges, DoCheck, AfterViewChecked } from '@angular/core';
+import { Component, Input, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { modelForm } from './models/model-form';
+import { Input as InputTag } from './models/input';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements AfterViewInit, AfterViewChecked {
 
@@ -14,21 +14,20 @@ export class FormComponent implements AfterViewInit, AfterViewChecked {
   constructor() { }
 
   ngAfterViewInit(): void {
-    this.data.inputs.forEach(input => {
-      input.eventos.forEach(evento => {
-        document.getElementById(input.id).addEventListener(evento.nome, evento.funcao);
-      })
-    })
-
-
+    this.addFunctions();
   }
+
   ngAfterViewChecked() {
+    this.addFunctions();
+  }
+  
+  private addFunctions() {
     this.data.inputs.forEach(input => {
       input.eventos.forEach(evento => {
-        document.getElementById(input.id).addEventListener(evento.nome, evento.funcao);
+        const element = document.getElementById(input.id);
+        if (element) element.addEventListener(evento.nome, evento.funcao);
       })
     })
   }
-
 
 }

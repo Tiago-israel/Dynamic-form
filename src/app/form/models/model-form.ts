@@ -5,4 +5,5 @@ export class modelForm {
     public inputs: Array<Input> = [];
     public resetForm: boolean = false;
     public submit: Submit = new Submit;
+    public model: any;
 }
